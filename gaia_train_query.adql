@@ -1,0 +1,38 @@
+SELECT TOP 200000
+  gs.source_id,
+  gs.random_index,
+  gs.parallax,
+  gs.parallax_over_error,
+  gs.ruwe,
+  gs.phot_g_mean_mag,
+  gs.bp_rp,
+
+  ap.teff_gspphot,
+  ap.teff_gspphot_lower,
+  ap.teff_gspphot_upper,
+
+  ap.logg_gspphot,
+  ap.logg_gspphot_lower,
+  ap.logg_gspphot_upper,
+
+  ap.radius_gspphot,
+  ap.radius_gspphot_lower,
+  ap.radius_gspphot_upper,
+
+  ap.ebpminrp_gspphot,
+  ap.ag_gspphot,
+
+  ap.evolstage_flame,
+  ap.lum_flame,
+  ap.mass_flame
+FROM gaiadr3.gaia_source AS gs
+JOIN gaiadr3.astrophysical_parameters AS ap
+USING (source_id)
+WHERE
+  gs.random_index BETWEEN 0 AND 2000000
+  AND gs.parallax_over_error > 10
+  AND gs.ruwe < 1.4
+  AND ap.teff_gspphot IS NOT NULL
+  AND ap.logg_gspphot IS NOT NULL
+  AND ap.radius_gspphot IS NOT NULL
+  AND ap.evolstage_flame IS NOT NULL;
