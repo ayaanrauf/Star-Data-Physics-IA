@@ -1,0 +1,213 @@
+{
+  "run": {
+    "timestamp": "2026-02-17T02:10:39",
+    "data_path": "C:\\Users\\astro\\Documents\\GitHub\\Star-Data-Physics-IA\\kepler_stellar_17.csv",
+    "output_dir": "C:\\Users\\astro\\Documents\\GitHub\\Star-Data-Physics-IA\\ia_outputs\\run_20260217_021031",
+    "delimiter_detected": ",",
+    "column_mapping": {
+      "teff": "teff",
+      "teff_err_high": "teff_err1",
+      "teff_err_low": "teff_err2",
+      "mass": "mass",
+      "mass_err_high": "mass_err1",
+      "mass_err_low": "mass_err2",
+      "radius": "st_radius",
+      "radius_err_high": "radius_err1",
+      "radius_err_low": "radius_err2",
+      "logg": "logg",
+      "logg_err_high": "logg_err1",
+      "logg_err_low": "logg_err2",
+      "jmag": "jmag",
+      "jmag_err": "jmag_err",
+      "kmag": "kmag",
+      "kmag_err": "kmag_err"
+    }
+  },
+  "config": {
+    "seed": 42,
+    "test_size": 0.2,
+    "p_threshold": 0.7,
+    "grid_size": 250,
+    "smooth_sigma": 1.5,
+    "model1_enabled": true,
+    "model2_enabled": true,
+    "main_sequence_filter": {
+      "logg_min": 4.1,
+      "radius_max": 2.0,
+      "teff_min": 3000.0,
+      "teff_max": 10000.0,
+      "mass_min_exclusive": 0.0,
+      "mass_max": 3.8
+    }
+  },
+  "counts": {
+    "N_raw_rows": 200038,
+    "N_after_dropna": 197028,
+    "N_after_ms_filter": 148222,
+    "N_train": 118577,
+    "N_test": 29645
+  },
+  "model1": {
+    "enabled": true,
+    "degree": 3,
+    "n_train_used": 118577,
+    "n_test_used": 29645,
+    "status": "ok",
+    "coefficients": {
+      "a0": 7811.399129921375,
+      "a1": -5245.810739786397,
+      "a2": 1208.7821349340506,
+      "a3": 6.102374783493133
+    },
+    "rmse_teff_K": 309.1942136613015,
+    "r2_teff": 0.7869922767247649
+  },
+  "model2": {
+    "enabled": true,
+    "grid_size": 250,
+    "smooth_sigma": 1.5,
+    "p_threshold": 0.7,
+    "n_train_used": 118577,
+    "n_test_used": 29645,
+    "active_classes": [
+      "M",
+      "K",
+      "G",
+      "F",
+      "A"
+    ],
+    "train_class_counts": {
+      "M": 1779,
+      "K": 19270,
+      "G": 54637,
+      "F": 42617,
+      "A": 274
+    },
+    "accuracy": 0.9685275763197841,
+    "confusion_matrix_labels": [
+      "M",
+      "K",
+      "G",
+      "F",
+      "A"
+    ],
+    "confusion_matrix": [
+      [
+        401,
+        2,
+        0,
+        0,
+        0
+      ],
+      [
+        36,
+        4707,
+        128,
+        0,
+        0
+      ],
+      [
+        0,
+        136,
+        13089,
+        391,
+        0
+      ],
+      [
+        0,
+        0,
+        227,
+        10434,
+        13
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        81
+      ]
+    ],
+    "high_conf_count": 28436,
+    "status": "ok",
+    "n_predictions_saved": 29645
+  },
+  "regression": {
+    "alpha_full": {
+      "status": "ok",
+      "alpha": 3.9056805480263757,
+      "intercept": 0.044676620079559845,
+      "r2": 0.8869354889620158,
+      "rmse_logL": 0.14702003494528612
+    },
+    "alpha_test": {
+      "status": "ok",
+      "alpha": 3.9176906733842847,
+      "intercept": 0.04519410020209175,
+      "r2": 0.8865532029158618,
+      "rmse_logL": 0.1466570097268313
+    },
+    "alpha_highconf": {
+      "status": "ok",
+      "alpha": 3.9236198074923996,
+      "intercept": 0.04571801211936356,
+      "r2": 0.8885134809143176,
+      "rmse_logL": 0.147001281226776
+    },
+    "alpha_bins": {
+      "0.1_to_0.7": {
+        "n": 16335,
+        "mass_range": [
+          0.1,
+          0.7
+        ],
+        "rule": "[0.1, 0.7]",
+        "alpha": 3.4264270394853713,
+        "intercept": -0.11767187206838503,
+        "r2": 0.8507494770861745,
+        "rmse_logL": 0.17276785554955565
+      },
+      "0.7_to_1.5": {
+        "n": 131133,
+        "mass_range": [
+          0.7,
+          1.5
+        ],
+        "rule": "(0.7, 1.5]",
+        "alpha": 3.8017181939050206,
+        "intercept": 0.04753347909087105,
+        "r2": 0.7514088451864362,
+        "rmse_logL": 0.14127729067649622
+      },
+      "1.5_to_3.5": {
+        "n": 754,
+        "mass_range": [
+          1.5,
+          3.5
+        ],
+        "rule": "(1.5, 3.5]",
+        "alpha": 3.7863138734378605,
+        "intercept": 0.14356663486967625,
+        "r2": 0.8404228914143675,
+        "rmse_logL": 0.07724422207446179
+      }
+    }
+  },
+  "stefan_boltzmann": {
+    "status": "ok",
+    "n_used": 148222,
+    "beta": 0.9951689098060533,
+    "gamma": 0.4788356821035677,
+    "c_intercept_logR": -0.0005919850314912017,
+    "d_intercept_logT": 3.7727914699570926,
+    "alpha_SB": 3.9056805480263774,
+    "alpha_minus_alpha_SB": -1.7763568394002505e-15
+  },
+  "artifacts": {
+    "cleaned_dataset_csv": "C:\\Users\\astro\\Documents\\GitHub\\Star-Data-Physics-IA\\ia_outputs\\run_20260217_021031\\cleaned_main_sequence.csv",
+    "results_json": "C:\\Users\\astro\\Documents\\GitHub\\Star-Data-Physics-IA\\ia_outputs\\run_20260217_021031\\results.json",
+    "results_txt": "C:\\Users\\astro\\Documents\\GitHub\\Star-Data-Physics-IA\\ia_outputs\\run_20260217_021031\\results.txt",
+    "model2_confusion_matrix_csv": "C:\\Users\\astro\\Documents\\GitHub\\Star-Data-Physics-IA\\ia_outputs\\run_20260217_021031\\model2_confusion_matrix.csv",
+    "model2_confusion_matrix_png": "C:\\Users\\astro\\Documents\\GitHub\\Star-Data-Physics-IA\\ia_outputs\\run_20260217_021031\\model2_confusion_matrix.png"
+  }
+}

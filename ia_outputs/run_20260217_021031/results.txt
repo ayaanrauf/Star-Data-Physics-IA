@@ -1,0 +1,64 @@
+Kepler DR25 Mass-Luminosity Analysis Results
+============================================
+Timestamp: 2026-02-17T02:10:39
+Input data: C:\Users\astro\Documents\GitHub\Star-Data-Physics-IA\kepler_stellar_17.csv
+Output folder: C:\Users\astro\Documents\GitHub\Star-Data-Physics-IA\ia_outputs\run_20260217_021031
+
+Counts
+--------------------
+N_raw_rows: 200038
+N_after_dropna: 197028
+N_after_ms_filter: 148222
+N_train: 118577
+N_test: 29645
+
+Main-Sequence Filters
+--------------------
+logg_min: 4.1
+radius_max: 2.0
+teff_min: 3000.0
+teff_max: 10000.0
+mass_min_exclusive: 0.0
+mass_max: 3.8
+
+Model 1 (Color -> Teff)
+--------------------
+enabled: True
+status: ok
+coefficients: a0=7811.399129921375, a1=-5245.810739786397, a2=1208.7821349340506, a3=6.102374783493133
+RMSE (K): 309.1942136613015
+R^2: 0.7869922767247649
+
+Model 2 (HR Probability Layers)
+--------------------
+enabled: True
+status: ok
+grid_size: 250
+smooth_sigma: 1.5
+accuracy: 0.9685275763197841
+active_classes: ['M', 'K', 'G', 'F', 'A']
+high_conf_count: 28436
+
+Mass-Luminosity Regression
+--------------------
+alpha_full: {'status': 'ok', 'alpha': 3.9056805480263757, 'intercept': 0.044676620079559845, 'r2': 0.8869354889620158, 'rmse_logL': 0.14702003494528612}
+alpha_test: {'status': 'ok', 'alpha': 3.9176906733842847, 'intercept': 0.04519410020209175, 'r2': 0.8865532029158618, 'rmse_logL': 0.1466570097268313}
+alpha_highconf: {'status': 'ok', 'alpha': 3.9236198074923996, 'intercept': 0.04571801211936356, 'r2': 0.8885134809143176, 'rmse_logL': 0.147001281226776}
+alpha_bins:
+  0.1_to_0.7: {'n': 16335, 'mass_range': [0.1, 0.7], 'rule': '[0.1, 0.7]', 'alpha': 3.4264270394853713, 'intercept': -0.11767187206838503, 'r2': 0.8507494770861745, 'rmse_logL': 0.17276785554955565}
+  0.7_to_1.5: {'n': 131133, 'mass_range': [0.7, 1.5], 'rule': '(0.7, 1.5]', 'alpha': 3.8017181939050206, 'intercept': 0.04753347909087105, 'r2': 0.7514088451864362, 'rmse_logL': 0.14127729067649622}
+  1.5_to_3.5: {'n': 754, 'mass_range': [1.5, 3.5], 'rule': '(1.5, 3.5]', 'alpha': 3.7863138734378605, 'intercept': 0.14356663486967625, 'r2': 0.8404228914143675, 'rmse_logL': 0.07724422207446179}
+
+Stefan-Boltzmann Consistency
+--------------------
+{'status': 'ok', 'n_used': 148222, 'beta': 0.9951689098060533, 'gamma': 0.4788356821035677, 'c_intercept_logR': -0.0005919850314912017, 'd_intercept_logT': 3.7727914699570926, 'alpha_SB': 3.9056805480263774, 'alpha_minus_alpha_SB': -1.7763568394002505e-15}
+
+Narrative Summary
+--------------------
+Loaded 200038 stellar rows; 148222 remain after cleaning and main-sequence cuts.
+Main fit on full sample gives alpha = 3.9056805480263757 with R^2 = 0.8869354889620158.
+Held-out test fit gives alpha = 3.9176906733842847 and RMSE = 0.1466570097268313 dex.
+Using Model 2 high-confidence stars (Pmax >= 0.7) gives alpha = 3.9236198074923996.
+Model 1 (J-K -> Teff, degree 3) achieved RMSE = 309.1942136613015 K and R^2 = 0.7869922767247649.
+Model 2 HR classification reached accuracy = 0.9685275763197841 on the held-out test set.
+Stefan-Boltzmann consistency gives alpha_SB = 3.9056805480263774 and alpha - alpha_SB = -1.7763568394002505e-15.

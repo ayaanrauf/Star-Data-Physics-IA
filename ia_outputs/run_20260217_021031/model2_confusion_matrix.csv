@@ -1,0 +1,6 @@
+,pred_M,pred_K,pred_G,pred_F,pred_A
+true_M,401,2,0,0,0
+true_K,36,4707,128,0,0
+true_G,0,136,13089,391,0
+true_F,0,0,227,10434,13
+true_A,0,0,0,0,81
